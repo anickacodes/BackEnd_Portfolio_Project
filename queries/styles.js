@@ -2,7 +2,7 @@ const db = require("../db/dbConfig");
 
 const getAllStyles = async () => {
   try {
-    const allStyles = await db.any("select * from styles");
+    const allStyles = await db.any("SELECT * FROM styles");
     return allStyles;
   } catch (err) {
     return err;
@@ -69,10 +69,10 @@ const deleteStyle = async (id) => {
   }
 };
 
-export default {
+module.exports = {
   getAllStyles,
   getOneStyle,
   createStyle,
   deleteStyle,
-  updateStyle,
+  updateStyle
 };
