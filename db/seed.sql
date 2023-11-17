@@ -13,7 +13,7 @@ insert into styles (category, service, duration, description, price, image_url) 
 ('Natural', 'Loc Retwist', '01:05:00', ' ', '100', 'https://i0.wp.com/www.atsavvy.com/wp-content/uploads/2022/01/53121B52-3A31-4267-87DE-2DDE37B9DCF2-scaled.jpeg?resize=1020%2C1275&ssl=1');
 
  
-insert into clients (styles_id, name, address, is_member, phone, rating) values
+insert into clients (style_id, name, address, is_member, phone, rating) values
 ('10', 'Nova K','', true, '2222222222', 5),
 ('9', 'kavon','', true, '2222022022', 4),
 ('8', 'SK','', true, '2122112424', 3),

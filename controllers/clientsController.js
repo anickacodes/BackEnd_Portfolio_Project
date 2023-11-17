@@ -1,22 +1,20 @@
 const express = require("express");
 const clients = express.Router({ mergeParams: true });
 
-const { getAllStyles } = require("../queries/styles");
+const { getOneStyle } = require("../queries/styles");
 
-const {
-  getAllClients,
+const {  getAllClients,
   getOneClient,
   newClient,
   deleteClient,
-  updateClient,
-} = require("../queries/clients");
+  updateClient} = require('../queries/clients.js')
 
 // index
 clients.get("/", async (req, res) => {
   const { style_id } = req.params;
   const allClients = await getAllClients(style_id);
-  const style = getAllStyles(style_id);
-  if (style.id) {
+  const style = getOneStyle(style_id);
+  if (style_id) {
     res.status(200).json({ ...style, allClients });
   } else {
     res
@@ -26,10 +24,10 @@ clients.get("/", async (req, res) => {
 });
 
 // show
-clients.get("./:id", async (req, res) => {
+clients.get("/:id",async (req, res) => {
   const { style_id, id } = req.params;
   const client = await getOneClient(id);
-  const style = await getAllStyles(style_id);
+  const style = await getOneStyle(style_id);
   if (client) {
     res.json({ ...style, client });
   } else {
@@ -52,7 +50,7 @@ clients.post("/", async (req, res) => {
 
 // update
 clients.put("/:id", async (req, res) => {
-  const { style_id, id } = res.params;
+  const { style_id, id } = req.params;
   const updatedClient = await updateClient({ style_id, id, ...req.body });
   if (updatedClient.id) res.status(200).json(updatedClient);
   else {

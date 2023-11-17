@@ -11,7 +11,7 @@ const getAllStyles = async () => {
 
 const getOneStyle = async (id) => {
   try {
-    const oneStyle = await db.one("select * from styles where id=$1", id);
+    const oneStyle = await db.one("SELECT * FROM styles WHERE id=$1", id);
     return oneStyle;
   } catch (err) {
     return err;
@@ -21,7 +21,7 @@ const getOneStyle = async (id) => {
 const createStyle = async (style) => {
   try {
     const newStyle = await db.one(
-      "insert into styles (category, service, duration, description, price, image_url) values($1, $2, $3, $4, $5, $6) returning *",
+      "INSERT INTO styles (category, service, duration, description, price, image_url) values($1, $2, $3, $4, $5, $6) RETURNING *",
       [
         style.category,
         style.service,
@@ -40,7 +40,7 @@ const createStyle = async (style) => {
 const updateStyle = async (id, style) => {
   try {
     const updatedStyle = await db.one(
-      "UPDATE Styles SET name=$1, url=$2, category=$3, is_favorite=$4 where id=$5 RETURNING *",
+      "UPDATE Styles SET category=$1, service=$2, duration=$3, description=$4, price=$5, image_url=$6 where id=$7 RETURNING *",
       [
         style.category,
         style.service,

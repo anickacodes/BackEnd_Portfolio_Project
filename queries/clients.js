@@ -4,8 +4,7 @@ const getAllClients = async (style_id) => {
   try {
     const allClients = await db.any(
       "SELECT * FROM clients WHERE style_id=$1",
-      style_id
-    );
+      style_id);
     return allClients;
   } catch (error) {
     return error;
