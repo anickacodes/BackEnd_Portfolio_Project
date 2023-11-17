@@ -20,10 +20,10 @@ const getOneClient = async (id) => {
   }
 };
 
-const newClient = async (client) => {
+const newClientObj = async (client) => {
   try {
     const newClient = await db.one(
-      "INSERT INTO clients ( name, address, is_member, phone, rating, style_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO clients ( name, address, is_member, phone, rating, style_id ) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
       [
         client.name,
         client.address,
@@ -31,6 +31,7 @@ const newClient = async (client) => {
         client.phone,
         client.rating,
         client.style_id,
+       
       ]
     );
     return newClient;
@@ -54,7 +55,7 @@ const deleteClient = async (id) => {
 const updateClient = async (client) => {
   try {
     const updatedClient = await db.one(
-      "UPDATE clients SET name=$1, address=$2, is_member=$3, phone=$4, rating=$5, style_id=$6 where id=$7 RETURNING *",
+      "UPDATE clients SET name=$1, address=$2, is_member=$3, phone=$4, rating=$5, style_id=$6 WHERE id=$7 RETURNING *",
       [
         client.name,
         client.address,
@@ -74,7 +75,7 @@ const updateClient = async (client) => {
 module.exports = {
   getAllClients,
   getOneClient,
-  newClient,
+  newClientObj,
   deleteClient,
   updateClient,
 };

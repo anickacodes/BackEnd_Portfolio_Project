@@ -3,11 +3,13 @@ const clients = express.Router({ mergeParams: true });
 
 const { getOneStyle } = require("../queries/styles");
 
-const {  getAllClients,
+const {
+  getAllClients,
   getOneClient,
-  newClient,
+  newClientObj,
   deleteClient,
-  updateClient} = require('../queries/clients.js')
+  updateClient,
+} = require("../queries/clients.js");
 
 // index
 clients.get("/", async (req, res) => {
@@ -24,7 +26,7 @@ clients.get("/", async (req, res) => {
 });
 
 // show
-clients.get("/:id",async (req, res) => {
+clients.get("/:id", async (req, res) => {
   const { style_id, id } = req.params;
   const client = await getOneClient(id);
   const style = await getOneStyle(style_id);
@@ -44,15 +46,15 @@ clients.post("/", async (req, res) => {
   //   res.status(400).json({ error: "can't post", err });
   // }
   const { style_id } = req.params;
-  const client = await newClient({ style_id, ...req.body });
+  const client = await newClientObj({ style_id, ...req.body });
   res.status(200).json(client);
 });
 
 // update
 clients.put("/:id", async (req, res) => {
-  const { style_id, id } = req.params;
-  const updatedClient = await updateClient({ style_id, id, ...req.body });
-  if (updatedClient.id) res.status(200).json(updatedClient);
+  const {  id, style_id } = req.params;
+  const updatedAClient = await updateClient({ style_id, id, ...req.body });
+  if (updatedAClient.id) res.status(200).json(updatedAClient);
   else {
     res.status(404).json("Could not update. No Client found");
   }

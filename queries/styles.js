@@ -74,5 +74,5 @@ module.exports = {
   getOneStyle,
   createStyle,
   deleteStyle,
-  updateStyle
+  updateStyle,
 };

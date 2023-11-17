@@ -62,13 +62,12 @@ styles.post(
 styles.put(
   "/:id",
   checkService,
-  checkThis,
   checkDuration,
   checkBoolean,
   async (req, res) => {
     const { id } = req.params;
-    const updatedStyle = await updateStyle(id, req.body);
-    res.status(200).json(updatedStyle);
+    const updatedthisStyle = await updateStyle(id, req.body);
+    res.status(200).json(updatedthisStyle);
   }
 );
 
