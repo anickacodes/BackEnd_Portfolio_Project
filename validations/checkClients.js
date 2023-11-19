@@ -1,8 +1,4 @@
-// name TEXT NOT NULL,
-// address TEXT,
-// is_member BOOLEAN,
-// phone varchar(10) not null,
-// rating NUMERIC,
+
 
 const checkThis = (req, res, next) => {
   if (!isNaN(req.params.id)) next();
