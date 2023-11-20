@@ -5,7 +5,6 @@ const checkService = (req, res, next) => {
   }
 };
 
-// check id is numerical
 function checkThis(req, res, next) {
   if (!isNaN(req.params.id)) next();
   else {
@@ -20,7 +19,6 @@ const checkDuration = (req, res, next) => {
   }
 };
 
-// Value can also come in as a string
 const checkBoolean = (req, res, next) => {
   const { is_favorite } = req.body;
   if (
@@ -35,18 +33,5 @@ const checkBoolean = (req, res, next) => {
   }
 };
 
-// Make sure that the URL starts with http:// or https://
-  // const validateURL = (req, res, next) => {
-  //   if (
-  //     req.body.url.substring(0, 7) === "http://" ||
-  //     req.body.url.substring(0, 8) === "https://"
-  //   ) {
-  //     return next();
-  //   } else {
-  //     res
-  //       .status(400)
-  //       .json({ error: `You forgot to start your url with http:// or https://` });
-  //   }
-  // };
 
 module.exports = { checkService, checkThis, checkDuration, checkBoolean };
