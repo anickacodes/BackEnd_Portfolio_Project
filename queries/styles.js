@@ -9,6 +9,17 @@ const getAllStyles = async () => {
   }
 };
 
+const getAllStylesWithClients = async () => {
+  try {
+    const allStylesWithClients = await db.any(
+      "SELECT clients.*, styles.category AS style_category FROM clients INNER JOIN styles ON clients.style_id = styles.id"
+    );
+    return allStylesWithClients;
+  } catch (error) {
+    return error;
+  }
+};
+
 const getOneStyle = async (id) => {
   try {
     const oneStyle = await db.one("SELECT * FROM styles WHERE id=$1", id);
@@ -71,6 +82,7 @@ const deleteStyle = async (id) => {
 
 module.exports = {
   getAllStyles,
+  getAllStylesWithClients,
   getOneStyle,
   createStyle,
   deleteStyle,

@@ -24,6 +24,6 @@ CREATE TABLE clients (
  phone varchar(10) not null,
  rating NUMERIC,
  CHECK (rating >= 0 AND rating <= 5),
- style_id INTEGER REFERENCES styles (id)
+ style_id INT REFERENCES styles (id)
  ON DELETE CASCADE
 );

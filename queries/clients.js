@@ -20,6 +20,7 @@ const getOneClient = async (id) => {
   }
 };
 
+
 const newClientObj = async (client) => {
   try {
     const newClient = await db.one(

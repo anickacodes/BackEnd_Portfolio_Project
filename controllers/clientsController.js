@@ -33,7 +33,7 @@ clients.get("/:id", async (req, res) => {
   if (client) {
     res.json({ ...style, client });
   } else {
-    removeEventListener.status(404).json;
+    res.status(404).json("Client :id Not Found");
   }
 });
 
@@ -41,7 +41,7 @@ clients.get("/:id", async (req, res) => {
 clients.post("/", async (req, res) => {
   const { style_id } = req.params;
   const client = await newClientObj({ style_id, ...req.body });
-  res.status(200).json(client);
+  res.status(201).json(client);
 });
 
 // update
@@ -61,7 +61,7 @@ clients.delete("/:id", async (req, res) => {
   if (deletedClient.id) {
     res.status(200).json(deletedClient);
   } else {
-    res.status(500).json("Could not delete; ClientId not found.");
+    res.status(404).json("Could not delete; ClientId not found.");
   }
 });
 

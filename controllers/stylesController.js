@@ -6,6 +6,7 @@ styles.use("/:style_id/clients", clientsController);
 
 const {
   getAllStyles,
+  getAllStylesWithClients,
   getOneStyle,
   createStyle,
   deleteStyle,
@@ -80,6 +81,13 @@ styles.delete("/:id", async (req, res) => {
   } else {
     res.status(500).json("Could not delete; StyleId not found.");
   }
+});
+
+// styles with clients
+styles.get("/:style_id/clients", async (req, res) => {
+  const { style_id } = req.params;
+  const allClientsWithStyles = await getAllStylesWithClients(style_id);
+  res.status(200).json(allClientsWithStyles);
 });
 
 module.exports = styles;
